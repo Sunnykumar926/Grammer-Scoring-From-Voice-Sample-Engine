@@ -1,0 +1,9 @@
+streamlit
+librosa
+scikit-learn
+matplotlib
+joblib
+numpy
+pandas
+setuptools
+streamlit-option-menu
