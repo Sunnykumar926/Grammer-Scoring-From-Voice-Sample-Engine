@@ -63,8 +63,8 @@ The dataset was **manually created** using audio clips from various public datas
 - **AudioSegment (pydub)**: Audio slicing and format handling
 
 ### 📁 Data Summary:
-- **Training Samples**: 444
-- **Testing Samples**: 195
+- **Training Samples**: 884
+- **Testing Samples**: 543
 - **Score Labels**: Continuous values (0–5) based on grammar quality
 
 ---
