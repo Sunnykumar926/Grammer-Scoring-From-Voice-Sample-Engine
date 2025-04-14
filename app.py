@@ -18,7 +18,20 @@ model = joblib.load(MODEL_PATH)
 
 # ======================= FEATURE EXTRACTOR =================================
 def extract_features(file_path, sr=22050, n_mfcc=13):
-    return None, None, None, None, None, None
+    try:
+        y, sr = librosa.load(file_path, sr=sr) 
+        duration = librosa.get_duration(y=y, sr=sr) 
+        mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
+        mfccs_mean = np.mean(mfccs.T, axis=0)
+        spectral_contrast = librosa.feature.spectral_contrast(y=y, sr=sr)
+        spectral_contrast_mean = np.mean(spectral_contrast.T, axis=0)
+        zcr = librosa.feature.zero_crossing_rate(y) 
+        zcr_mean = np.mean(zcr) 
+        features = np.hstack([mfccs_mean, spectral_contrast_mean]) 
+        return features, duration, zcr_mean, y, sr, mfccs 
+    except Exception as e:
+        st.error(f'❌ Error processing audio file: {e}')
+        return None, None, None, None, None, None
 
 # ---------------------- MENU BAR ----------------------------------
 with st.container():
@@ -46,7 +59,7 @@ if selected == 'About':
     st.markdown('''
         This Grammer Scoring uses:
         - 🎵 **Audio Features** (MFCCs, Spectral Contrast, ZCR)
-        - 🧠 **XgBoost Regressor**
+        - 🧠 **RandomForest Regressor**
         - 🎯 Outputs a score from **0 to 5** based on grammer quality, fluency and language level.
         
         ### 🛠 Applications:
