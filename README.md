@@ -1,4 +1,3 @@
-- [Web Application]
 # 🗣️ Grammar Scoring Engine for Voice Samples
 
 A **Streamlit-based web application** that evaluates the **grammar quality** of spoken English from `.wav` audio files. The model uses audio features such as **MFCCs**, **Spectral Contrast**, and **Zero Crossing Rate** to predict a **grammar score** ranging from **0 to 5**.
