@@ -35,8 +35,7 @@ def extract_features(file_path, sr=22050, n_mfcc=13):
 
 # ---------------------- MENU BAR ----------------------------------
 with st.container():
-
-    st.write('This is inside container')
+    st.markdown("🚧 This is just a basic version. An updated version is coming soon.")
 
     selected=option_menu(
         menu_title=None,
